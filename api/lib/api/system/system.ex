@@ -24,7 +24,7 @@ defmodule Api.System do
   @doc """
   Gets a single store.
 
-  Raises `Ecto.NoResultsError` if the Store does not exist.
+  Returns `nil` if the Store does not exist.
 
   ## Examples
 
@@ -35,7 +35,7 @@ defmodule Api.System do
       ** (Ecto.NoResultsError)
 
   """
-  def get_store!(id), do: Repo.get!(Store, id)
+  def get_store(id), do: Repo.get(Store, id)
 
   @doc """
   Creates a store.

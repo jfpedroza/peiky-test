@@ -68,9 +68,8 @@ defmodule ApiWeb.StoreControllerTest do
     test "deletes chosen store", %{conn: conn, store: store} do
       conn = delete conn, store_path(conn, :delete, store)
       assert response(conn, 204)
-      assert_error_sent 404, fn ->
-        get conn, store_path(conn, :show, store)
-      end
+      conn = get conn, store_path(conn, :show, store)
+      assert response(conn, 404)
     end
   end
 

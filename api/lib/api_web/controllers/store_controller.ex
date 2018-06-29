@@ -21,22 +21,41 @@ defmodule ApiWeb.StoreController do
   end
 
   def show(conn, %{"id" => id}) do
-    store = System.get_store!(id)
-    render(conn, "show.json", store: store)
+    store = System.get_store(id)
+
+    if store do
+      render(conn, "show.json", store: store)
+    else
+      conn
+      |> put_status(:not_found)
+      |> render("show.json", store: store)
+    end
   end
 
   def update(conn, %{"id" => id, "store" => store_params}) do
-    store = System.get_store!(id)
+    store = System.get_store(id)
 
-    with {:ok, %Store{} = store} <- System.update_store(store, store_params) do
-      render(conn, "show.json", store: store)
+    if store do
+      with {:ok, %Store{} = store} <- System.update_store(store, store_params) do
+        render(conn, "show.json", store: store)
+      end
+    else
+      conn
+      |> put_status(:not_found)
+      |> render("show.json", store: store)
     end
   end
 
   def delete(conn, %{"id" => id}) do
-    store = System.get_store!(id)
-    with {:ok, %Store{}} <- System.delete_store(store) do
-      send_resp(conn, :no_content, "")
+    store = System.get_store(id)
+    if store do
+      with {:ok, %Store{}} <- System.delete_store(store) do
+        send_resp(conn, :no_content, "")
+      end
+    else
+      conn
+      |> put_status(:not_found)
+      |> render("show.json", store: store)
     end
   end
 end

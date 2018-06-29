@@ -26,7 +26,7 @@ defmodule Api.SystemTest do
 
     test "get_store!/1 returns the store with given id" do
       store = store_fixture()
-      assert System.get_store!(store.id) == store
+      assert System.get_store(store.id) == store
     end
 
     test "create_store/1 with valid data creates a store" do
@@ -50,13 +50,13 @@ defmodule Api.SystemTest do
     test "update_store/2 with invalid data returns error changeset" do
       store = store_fixture()
       assert {:error, %Ecto.Changeset{}} = System.update_store(store, @invalid_attrs)
-      assert store == System.get_store!(store.id)
+      assert store == System.get_store(store.id)
     end
 
     test "delete_store/1 deletes the store" do
       store = store_fixture()
       assert {:ok, %Store{}} = System.delete_store(store)
-      assert_raise Ecto.NoResultsError, fn -> System.get_store!(store.id) end
+      assert nil == System.get_store(store.id)
     end
 
     test "change_store/1 returns a store changeset" do
