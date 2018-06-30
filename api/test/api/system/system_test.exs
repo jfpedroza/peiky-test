@@ -68,7 +68,6 @@ defmodule Api.SystemTest do
   describe "products" do
     alias Api.System.Product
 
-    @store_attrs %{name: "some store name", address: "some address"}
     @valid_attrs %{description: "some description", name: "some name", price: 120.5, stock: 42}
     @update_attrs %{description: "some updated description", name: "some updated name", price: 456.7, stock: 43}
     @invalid_attrs %{description: nil, name: nil, price: nil, stock: nil, store_id: nil}
@@ -83,19 +82,24 @@ defmodule Api.SystemTest do
       product
     end
 
+    def product_fixture() do
+      %{}
+      |> store_fixture()
+      |> product_fixture()
+    end
+
     test "list_products/0 returns all products" do
-      product = product_fixture(store_fixture())
+      product = product_fixture()
       assert System.list_products() == [product]
     end
 
     test "list_products/1 returns all products of a store" do
-      store = store_fixture()
-      product = product_fixture(store)
-      assert System.list_products(store.id) == [product]
+      product = product_fixture()
+      assert System.list_products(product.store_id) == [product]
     end
 
     test "get_product/1 returns the product with given id" do
-      product = product_fixture(store_fixture())
+      product = product_fixture()
       assert System.get_product(product.id) == product
     end
 
@@ -115,32 +119,31 @@ defmodule Api.SystemTest do
     end
 
     test "update_product/2 with valid data updates the product" do
-      store = store_fixture()
-      product = product_fixture(store)
-      attrs = @update_attrs |> Map.put(:store_id, store.id)
+      product = product_fixture()
+      attrs = @update_attrs |> Map.put(:store_id, product.store_id)
       assert {:ok, product} = System.update_product(product, attrs)
       assert %Product{} = product
       assert product.description == "some updated description"
       assert product.name == "some updated name"
       assert product.price == 456.7
       assert product.stock == 43
-      assert product.store_id == store.id
+      assert product.store_id == product.store_id
     end
 
     test "update_product/2 with invalid data returns error changeset" do
-      product = product_fixture(store_fixture())
+      product = product_fixture()
       assert {:error, %Ecto.Changeset{}} = System.update_product(product, @invalid_attrs)
       assert product == System.get_product(product.id)
     end
 
     test "delete_product/1 deletes the product" do
-      product = product_fixture(store_fixture())
+      product = product_fixture()
       assert {:ok, %Product{}} = System.delete_product(product)
       assert nil == System.get_product(product.id)
     end
 
     test "change_product/1 returns a product changeset" do
-      product = product_fixture(store_fixture())
+      product = product_fixture()
       assert %Ecto.Changeset{} = System.change_product(product)
     end
   end

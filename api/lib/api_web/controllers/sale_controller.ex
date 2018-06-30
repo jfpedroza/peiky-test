@@ -39,8 +39,9 @@ defmodule ApiWeb.SaleController do
   def create(conn, %{"store_id" => store_id, "sale" => sale_params}) do
     store = System.get_store(store_id)
     if store do
-      product = System.get_product(sale_params["product_id"])
-      if product do
+      product_id = sale_params["product_id"]
+      product = if product_id, do: System.get_product(product_id), else: nil
+      if product || product_id == nil do
         sale_params = Map.put(sale_params, "store_id", store_id)
         with {:ok, %Sale{} = sale} <- Sales.create_sale(sale_params) do
           conn
