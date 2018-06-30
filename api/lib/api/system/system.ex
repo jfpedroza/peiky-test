@@ -28,11 +28,11 @@ defmodule Api.System do
 
   ## Examples
 
-      iex> get_store!(123)
+      iex> get_store(123)
       %Store{}
 
-      iex> get_store!(456)
-      ** (Ecto.NoResultsError)
+      iex> get_store(456)
+      nil
 
   """
   def get_store(id), do: Repo.get(Store, id)
@@ -139,11 +139,11 @@ defmodule Api.System do
 
   ## Examples
 
-      iex> get_product!(123)
+      iex> get_product(123)
       %Product{}
 
-      iex> get_product!(456)
-      ** (Ecto.NoResultsError)
+      iex> get_product(456)
+      nil
 
   """
   def get_product(id), do: Repo.get(Product, id)

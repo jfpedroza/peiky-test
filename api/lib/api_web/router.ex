@@ -34,5 +34,13 @@ defmodule ApiWeb.Router do
     post "/stores/:store_id/products", ProductController, :create
     put "/products/:id", ProductController, :update
     delete "/products/:id", ProductController, :delete
+
+    get "/sales", SaleController, :index
+    get "/stores/:store_id/sales", SaleController, :per_store
+    get "/products/:product_id/sales", SaleController, :per_product
+    get "/sales/:id", SaleController, :show
+    post "/stores/:store_id/sales", SaleController, :create
+    put "/sales/:id", SaleController, :update
+    delete "/sales/:id", SaleController, :delete
   end
 end
