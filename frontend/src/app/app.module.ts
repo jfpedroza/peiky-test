@@ -1,34 +1,43 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule, MatSortModule, MatButtonModule, MatIconModule, MatToolbarModule } from '@angular/material';
 import { MatDialogModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 
+import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { StoreComponent } from './store/store.component';
 import { CreateEditStoreDialogComponent } from './store/create-edit-store.dialog';
 import { DeleteStoreDialogComponent } from './store/delete-store.dialog';
+import { CreateEditProductDialogComponent } from './product/create-edit-product.dialog';
+import { DeleteProductDialogComponent } from './product/delete-product.dialog';
 
 import { StoreService } from './services/store.service';
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StoreComponent,
     CreateEditStoreDialogComponent,
-    DeleteStoreDialogComponent
+    DeleteStoreDialogComponent,
+    ProductComponent,
+    CreateEditProductDialogComponent,
+    DeleteProductDialogComponent
   ],
   entryComponents: [
     CreateEditStoreDialogComponent,
-    DeleteStoreDialogComponent
+    DeleteStoreDialogComponent,
+    CreateEditProductDialogComponent,
+    DeleteProductDialogComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule,
+    AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
     MatTableModule, MatSortModule, MatButtonModule, MatIconModule, MatToolbarModule,

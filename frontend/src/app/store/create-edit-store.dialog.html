@@ -8,7 +8,6 @@
     </mat-form-field>
     <div mat-dialog-actions>
         <button mat-button (click)="onCancelClick()">Cancel</button>
-        <button mat-button [mat-dialog-close]="data" *ngIf="!data.editMode" cdkFocusInitial>Create</button>
-        <button mat-button [mat-dialog-close]="data" *ngIf="data.editMode" cdkFocusInitial>Edit</button>
+        <button mat-raised-button color="primary" [mat-dialog-close]="data" cdkFocusInitial>{{data.editMode ? 'Edit' : 'Create' }}</button>
     </div>
 </div>

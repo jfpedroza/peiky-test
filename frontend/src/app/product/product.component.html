@@ -1,0 +1,41 @@
+<div>
+    <mat-toolbar>
+      <span>Products of {{store?.name || ''}}</span>
+      <span style="flex: 1 1 auto"></span>
+      <button mat-raised-button color="accent" (click)="addProduct()"><mat-icon>add</mat-icon>New</button>
+    </mat-toolbar>
+    <mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+        <mat-cell *matCellDef="let product">{{product.id}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+        <mat-cell *matCellDef="let product">{{product.name}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Description</mat-header-cell>
+        <mat-cell *matCellDef="let product">{{product.description}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Price</mat-header-cell>
+        <mat-cell *matCellDef="let product">{{product.price}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="stock">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Stock</mat-header-cell>
+        <mat-cell *matCellDef="let product">{{product.stock}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="options">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Options</mat-header-cell>
+        <mat-cell *matCellDef="let product">
+          <button mat-raised-button color="primary" title="view products" (click)="viewSales(product)">
+            <mat-icon>visibility</mat-icon> Sales
+          </button>
+          <button mat-raised-button color="primary" title="edit product" (click)="editProduct(product)"><mat-icon>edit</mat-icon></button>
+          <button mat-raised-button color="warn" title="delete product" (click)="deleteProduct(product)"><mat-icon>delete</mat-icon></button>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns" color="primary"></mat-header-row>
+      <mat-row *matRowDef="let row; columns:displayedColumns"></mat-row>
+    </mat-table>
+  </div>

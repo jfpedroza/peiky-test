@@ -52,10 +52,6 @@ export class StoreComponent implements OnInit {
     });
   }
 
-  viewProducts(store: Store) {
-    alert('viewing...');
-  }
-
   editStore(store: Store) {
     const dialogRef = this.dialog.open(CreateEditStoreDialogComponent, {
       width: '300px',

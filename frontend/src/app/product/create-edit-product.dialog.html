@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>{{data.editMode ? 'Edit' : 'Create' }} product</h1>
+<div mat-dialog-content>
+    <mat-form-field>
+        <input matInput [(ngModel)]="data.product.name" placeholder="Name">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput [(ngModel)]="data.product.description" placeholder="Description">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput [(ngModel)]="data.product.price" placeholder="Price">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput [(ngModel)]="data.product.stock" placeholder="Stock">
+    </mat-form-field>
+    <div mat-dialog-actions>
+        <button mat-button (click)="onCancelClick()">Cancel</button>
+        <button mat-raised-button color="primary" [mat-dialog-close]="data" cdkFocusInitial>{{data.editMode ? 'Edit' : 'Create' }}</button>
+    </div>
+</div>

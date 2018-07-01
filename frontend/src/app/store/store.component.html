@@ -20,7 +20,7 @@
     <ng-container matColumnDef="options">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Options</mat-header-cell>
       <mat-cell *matCellDef="let store">
-        <button mat-raised-button color="primary" title="view products" (click)="viewProducts(store)">
+        <button mat-raised-button color="primary" title="view products" routerLink="/stores/{{store.id}}/products">
           <mat-icon>visibility</mat-icon> Products
         </button>
         <button mat-raised-button color="primary" title="edit store" (click)="editStore(store)"><mat-icon>edit</mat-icon></button>
