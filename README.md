@@ -13,7 +13,7 @@ EL proyecto requiere tener [Docker](https://docs.docker.com/install/) y [Docker 
 
 Ejemplo:
 ```bash
-git clone url
+git clone https://github.com/johnf9896/peiky-test.git
 cd peiky-test
 docker-compose up
 ```
