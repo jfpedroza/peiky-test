@@ -1,0 +1,33 @@
+<div>
+  <mat-toolbar>
+    <span>Stores</span>
+    <span style="flex: 1 1 auto"></span>
+    <button mat-raised-button color="accent" (click)="addStore()"><mat-icon>add</mat-icon>New</button>
+  </mat-toolbar>
+  <mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+      <mat-cell *matCellDef="let store">{{store.id}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+      <mat-cell *matCellDef="let store">{{store.name}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="address">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Address</mat-header-cell>
+      <mat-cell *matCellDef="let store">{{store.address}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="options">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Options</mat-header-cell>
+      <mat-cell *matCellDef="let store">
+        <button mat-raised-button color="primary" title="view products" (click)="viewProducts(store)">
+          <mat-icon>visibility</mat-icon> Products
+        </button>
+        <button mat-raised-button color="primary" title="edit store" (click)="editStore(store)"><mat-icon>edit</mat-icon></button>
+        <button mat-raised-button color="warn" title="delete store" (click)="deleteStore(store)"><mat-icon>delete</mat-icon></button>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns" color="primary"></mat-header-row>
+    <mat-row *matRowDef="let row; columns:displayedColumns"></mat-row>
+  </mat-table>
+</div>

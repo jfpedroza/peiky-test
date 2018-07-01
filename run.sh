@@ -19,8 +19,7 @@ fi
 
 # Build Angular frontend
 echo "\nBuilding Angular project..."
-rm -r api/priv/static/*
-cd frontend && npm run build
+cd frontend && npm install && npm run build
 cd ..
 cp api/priv/static/index.html api/lib/api_web/templates/page/index.html.eex
 sed -i -E "s|src=\"([^\\.]+)\\.js\"|src=\"<%= static_path(@conn, \"/\1\.js\") %>\"|g" api/lib/api_web/templates/page/index.html.eex

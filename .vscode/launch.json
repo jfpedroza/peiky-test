@@ -5,49 +5,14 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "mix_task",
-            "name": "Phoenix server",
+            "type": "node",
             "request": "launch",
-            "projectDir": "${workspaceRoot}",
-            "task": "phx.server",
-            "env": {
-                "DB_ENV_POSTGRES_USER": "postgres",
-                "DB_ENV_POSTGRES_PASSWORD": "postgres",
-                "DB_ENV_POSTGRES_HOST": "localhost"
-            },
-            "preLaunchTask": "npm: build - frontend"
-        },
-        {
-            "type": "mix_task",
-            "name": "Ecto Reset",
-            "request": "launch",
-            "projectDir": "${workspaceRoot}",
-            "task": "ecto.reset",
-            "env": {
-                "DB_ENV_POSTGRES_USER": "postgres",
-                "DB_ENV_POSTGRES_PASSWORD": "postgres",
-                "DB_ENV_POSTGRES_HOST": "localhost"
-            }
-        },
-        {
-            "type": "mix_task",
-            "name": "mix test",
-            "request": "launch",
-            "task": "test",
-            "taskArgs": [
-                "--trace"
-            ],
-            "startApps": true,
-            "projectDir": "${workspaceRoot}",
-            "requireFiles": [
-                "api/test/**/test_helper.exs",
-                "api/test/**/*_test.exs"
-            ],
-            "env": {
-                "DB_ENV_POSTGRES_USER": "postgres",
-                "DB_ENV_POSTGRES_PASSWORD": "postgres",
-                "DB_ENV_POSTGRES_HOST": "localhost"
-            }
+            "name": "Run with Docker",
+            "cwd": "${workspaceFolder}",
+            "runtimeExecutable": "docker-compose",
+            "runtimeArgs": [
+                "up"
+            ]
         }
     ]
 }
