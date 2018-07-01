@@ -66,10 +66,6 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  viewSales(product: Product) {
-    alert('viewing...');
-  }
-
   editProduct(product: Product) {
     const dialogRef = this.dialog.open(CreateEditProductDialogComponent, {
       width: '300px',

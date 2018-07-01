@@ -17,6 +17,9 @@ import { DeleteProductDialogComponent } from './product/delete-product.dialog';
 
 import { StoreService } from './services/store.service';
 import { ProductComponent } from './product/product.component';
+import { SaleComponent } from './sale/sale.component';
+import { CreateEditSaleDialogComponent } from './sale/create-edit-sale.dialog';
+import { DeleteSaleDialogComponent } from './sale/delete-sale.dialog';
 
 @NgModule({
   declarations: [
@@ -26,13 +29,18 @@ import { ProductComponent } from './product/product.component';
     DeleteStoreDialogComponent,
     ProductComponent,
     CreateEditProductDialogComponent,
-    DeleteProductDialogComponent
+    DeleteProductDialogComponent,
+    SaleComponent,
+    CreateEditSaleDialogComponent,
+    DeleteSaleDialogComponent
   ],
   entryComponents: [
     CreateEditStoreDialogComponent,
     DeleteStoreDialogComponent,
     CreateEditProductDialogComponent,
-    DeleteProductDialogComponent
+    DeleteProductDialogComponent,
+    CreateEditSaleDialogComponent,
+    DeleteSaleDialogComponent
   ],
   imports: [
     BrowserModule,

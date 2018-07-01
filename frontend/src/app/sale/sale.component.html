@@ -1,0 +1,34 @@
+<div>
+  <mat-toolbar>
+    <span>Sales of product '{{product?.name || ''}}' of {{store?.name || ''}}</span>
+    <span style="flex: 1 1 auto"></span>
+    <button mat-raised-button color="accent" (click)="addSale()" ng-disabled="product.stock == 0"><mat-icon>add</mat-icon>New</button>
+  </mat-toolbar>
+  <mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+      <mat-cell *matCellDef="let sale">{{sale.id}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="client_name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Client Name</mat-header-cell>
+      <mat-cell *matCellDef="let sale">{{sale.client_name}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="price">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Price</mat-header-cell>
+      <mat-cell *matCellDef="let sale">{{sale.price}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="purchase_date">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Purchase Date</mat-header-cell>
+      <mat-cell *matCellDef="let sale">{{sale.purchase_date}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="options">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Options</mat-header-cell>
+      <mat-cell *matCellDef="let sale">
+        <button mat-raised-button color="primary" title="edit sale" (click)="editSale(sale)"><mat-icon>edit</mat-icon></button>
+        <button mat-raised-button color="warn" title="delete sale" (click)="deleteSale(sale)"><mat-icon>delete</mat-icon></button>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns" color="primary"></mat-header-row>
+    <mat-row *matRowDef="let row; columns:displayedColumns"></mat-row>
+  </mat-table>
+</div>

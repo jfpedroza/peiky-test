@@ -28,7 +28,7 @@
       <ng-container matColumnDef="options">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Options</mat-header-cell>
         <mat-cell *matCellDef="let product">
-          <button mat-raised-button color="primary" title="view products" (click)="viewSales(product)">
+          <button mat-raised-button color="primary" title="view products" routerLink="/stores/{{store.id}}/products/{{product.id}}/sales">
             <mat-icon>visibility</mat-icon> Sales
           </button>
           <button mat-raised-button color="primary" title="edit product" (click)="editProduct(product)"><mat-icon>edit</mat-icon></button>
