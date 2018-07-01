@@ -5,6 +5,8 @@ defmodule ApiWeb.SaleController do
   alias Api.Sales.Sale
   alias Api.System
 
+  require Logger
+
   action_fallback ApiWeb.FallbackController
 
   def index(conn, _params) do
@@ -44,6 +46,7 @@ defmodule ApiWeb.SaleController do
       if product || product_id == nil do
         sale_params = Map.put(sale_params, "store_id", store_id)
         with {:ok, %Sale{} = sale} <- Sales.create_sale(sale_params) do
+          System.update_product(product, %{name: product.name, description: product.description, price: product.price, stock: product.stock - 1})
           conn
           |> put_status(:created)
           |> put_resp_header("location", sale_path(conn, :show, sale))

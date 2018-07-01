@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule, MatSortModule, MatButtonModule, MatIconModule, MatToolbarModule } from '@angular/material';
-import { MatDialogModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatDialogModule, MatFormFieldModule, MatInputModule, MatSnackBarModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -49,7 +49,7 @@ import { DeleteSaleDialogComponent } from './sale/delete-sale.dialog';
     FormsModule,
     BrowserAnimationsModule,
     MatTableModule, MatSortModule, MatButtonModule, MatIconModule, MatToolbarModule,
-    MatDialogModule, MatFormFieldModule, MatInputModule
+    MatDialogModule, MatFormFieldModule, MatInputModule, MatSnackBarModule
   ],
   providers: [StoreService],
   bootstrap: [AppComponent]

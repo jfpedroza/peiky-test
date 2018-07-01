@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatSort, MatTableDataSource, MatDialog } from '@angular/material';
+import { MatSort, MatTableDataSource, MatDialog, MatSnackBar } from '@angular/material';
 import { Product, ProductDialogData } from '../models/product.model';
 import { ProductService } from '../services/product.service';
 import { CreateEditProductDialogComponent } from './create-edit-product.dialog';
@@ -25,7 +25,8 @@ export class ProductComponent implements OnInit {
     private productService: ProductService,
     private storeService: StoreService,
     private route: ActivatedRoute,
-    public dialog: MatDialog) {
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar) {
     this.products = [];
   }
 
@@ -35,7 +36,11 @@ export class ProductComponent implements OnInit {
       this.store = store;
       this.loadProducts();
     })
-    .catch((error: string) => alert(error));
+    .catch((error: string) => {
+      this.snackBar.open(`Error: ${error}`, '', {
+        duration: 2000
+      });
+    });
   }
 
   loadProducts() {
@@ -45,7 +50,11 @@ export class ProductComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.products);
       this.dataSource.sort = this.sort;
     })
-    .catch((error: string) => alert(error));
+    .catch((error: string) => {
+      this.snackBar.open(`Error: ${error}`, '', {
+        duration: 2000
+      });
+    });
   }
 
   addProduct() {
@@ -61,7 +70,11 @@ export class ProductComponent implements OnInit {
         .then(() => {
           this.loadProducts();
         })
-        .catch((error: string) => alert(error));
+        .catch((error: string) => {
+          this.snackBar.open(`Error: ${error}`, '', {
+            duration: 2000
+          });
+        });
       }
     });
   }
@@ -78,7 +91,11 @@ export class ProductComponent implements OnInit {
         .then(() => {
           this.loadProducts();
         })
-        .catch((error: string) => alert(error));
+        .catch((error: string) => {
+          this.snackBar.open(`Error: ${error}`, '', {
+            duration: 2000
+          });
+        });
       }
     });
   }
@@ -95,7 +112,11 @@ export class ProductComponent implements OnInit {
         .then(() => {
           this.loadProducts();
         })
-        .catch((error: string) => alert(error));
+        .catch((error: string) => {
+          this.snackBar.open(`Error: ${error}`, '', {
+            duration: 2000
+          });
+        });
       }
     });
   }

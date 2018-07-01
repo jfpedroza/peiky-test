@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { StoreService } from '../services/store.service';
 import { Store, StoreDialogData } from '../models/store.model';
-import { MatSort, MatTableDataSource, MatDialog } from '@angular/material';
+import { MatSort, MatTableDataSource, MatDialog, MatSnackBar } from '@angular/material';
 import { CreateEditStoreDialogComponent } from './create-edit-store.dialog';
 import { DeleteStoreDialogComponent } from './delete-store.dialog';
 
@@ -17,7 +17,10 @@ export class StoreComponent implements OnInit {
   displayedColumns = ['id', 'name', 'address', 'options'];
   stores: Store[];
 
-  constructor(private storeService: StoreService, public dialog: MatDialog) {
+  constructor(
+    private storeService: StoreService,
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar) {
     this.stores = [];
   }
 
@@ -32,7 +35,11 @@ export class StoreComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.stores);
       this.dataSource.sort = this.sort;
     })
-    .catch((error: string) => alert(error));
+    .catch((error: string) => {
+      this.snackBar.open(`Error: ${error}`, '', {
+        duration: 2000
+      });
+    });
   }
 
   addStore() {
@@ -47,7 +54,11 @@ export class StoreComponent implements OnInit {
         .then(() => {
           this.loadStores();
         })
-        .catch((error: string) => alert(error));
+        .catch((error: string) => {
+          this.snackBar.open(`Error: ${error}`, '', {
+            duration: 2000
+          });
+        });
       }
     });
   }
@@ -64,7 +75,11 @@ export class StoreComponent implements OnInit {
         .then(() => {
           this.loadStores();
         })
-        .catch((error: string) => alert(error));
+        .catch((error: string) => {
+          this.snackBar.open(`Error: ${error}`, '', {
+            duration: 2000
+          });
+        });
       }
     });
   }
@@ -81,7 +96,11 @@ export class StoreComponent implements OnInit {
         .then(() => {
           this.loadStores();
         })
-        .catch((error: string) => alert(error));
+        .catch((error: string) => {
+          this.snackBar.open(`Error: ${error}`, '', {
+            duration: 2000
+          });
+        });
       }
     });
   }
